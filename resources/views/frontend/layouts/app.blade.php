@@ -25,13 +25,20 @@
     <body>
         @include('includes.partials.read-only')
 
-        <div id="app">
+        <div id="app" class="container">
             @include('includes.partials.logged-in-as')
             @include('frontend.includes.nav')
 
             <div class="container">
                 @include('includes.partials.messages')
-                @yield('content')
+                <div class="row">
+                    <div class="col-md-8 blog-main">
+                            @yield('content')
+                    </div>
+                    <aside class="col-md-4">
+                            @include('frontend.breadcrumbs.aside')
+                    </aside>
+                </div>
             </div><!-- container -->
         </div><!-- #app -->
 

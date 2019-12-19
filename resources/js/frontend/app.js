@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -8,6 +7,13 @@
 import '../bootstrap';
 import '../plugins';
 import Vue from 'vue';
+
+// javascript import for when you're importing the css directly in your javascript
+import "vue-navigation-bar/dist/vue-navigation-bar.css";
+
+// import the library
+import VueNavigationBar from "vue-navigation-bar";
+Vue.component("vue-navigation-bar", VueNavigationBar);
 
 window.Vue = Vue;
 
@@ -23,7 +29,6 @@ window.Vue = Vue;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

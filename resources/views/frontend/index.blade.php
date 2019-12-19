@@ -11,6 +11,8 @@
                 </div>
                 <div class="card-body">
                     @lang('strings.frontend.welcome_to', ['place' => app_name()])
+                    <br />
+                    Начальная страница, пока не известно с чем.
                 </div>
             </div><!--card-->
         </div><!--col-->
@@ -19,6 +21,7 @@
     <div class="row mb-4">
         <div class="col">
             <example-component></example-component>
+
         </div><!--col-->
     </div><!--row-->
 
