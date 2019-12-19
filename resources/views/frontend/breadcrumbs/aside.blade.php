@@ -5,9 +5,4 @@
     </div>
 </div>
 
-<sidebar-menu>
-    <div slot="header">header</div>
-    <div slot="footer">footer</div>
-    <span slot="toggle-icon">toggle-icon</span>
-    <span slot="dropdown-icon">dropdown-icon</span>
-</sidebar-menu>
+
