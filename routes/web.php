@@ -18,6 +18,11 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
     include_route_files(__DIR__.'/frontend/');
 });
 
+Route::resource('article', 'ArticleController', [
+    'names' => [
+        'index' => 'article.index',
+    ]
+]);
 /*
  * Backend Routes
  * Namespaces indicate folder structure
