@@ -32,8 +32,6 @@
                   <p class="card-text">{{$Article->another_info}}</p>
                   <a href="article/{{$Article->id}}/edit" class="btn btn-primary">Read more</a>
                 </div>
-
-                @endif
         </div><!-- card -->
     </div><!-- row -->
 </div><!-- row -->

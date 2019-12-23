@@ -33,7 +33,22 @@
                 @include('includes.partials.messages')
                 <div class="row">
                     <div class="col-md-8 blog-main">
-                            @yield('content')
+                            <div class="row mb-4">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <strong>
+                                                    @yield('head_menu_title', 'Главная страница')
+                                                </strong>
+                                            </div><!--card-header-->
+                                           <div class="card-body">
+                                                @yield('content')
+                                           </div>
+                                        </div><!-- card -->
+                                    </div><!-- row -->
+                                </div><!-- row -->
+
+
                     </div>
                     <aside class="col-md-4">
                             @include('frontend.breadcrumbs.aside')

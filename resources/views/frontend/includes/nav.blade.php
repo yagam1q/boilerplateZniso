@@ -48,11 +48,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-dark nav-link mx-3 text-white"
-                       href="">{{ __('Мои статьи') }}</a>
+                       href="{{Route('article.index')}}">{{ __('Мои статьи') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-dark nav-link mx-3 text-white"
-                       href="">{{ __('Создать') }}</a>
+                       href="{{Route('article.create')}}">{{ __('Создать') }}</a>
                 </li>
                 @can('view backend')
                     <li class="nav-item">

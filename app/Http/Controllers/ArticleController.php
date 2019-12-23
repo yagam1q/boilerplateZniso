@@ -23,7 +23,7 @@ class ArticleController extends Controller
     {
         $Articles = Article::all()->where('status', 1);
         if($Articles->isEmpty()){
-            abort(403 , 'navs.general.home' );
+            abort(404 , 'navs.general.home' );
         }
         return view('frontend.Article.index' , compact('Articles'));
     }
@@ -35,7 +35,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('frontend.article.create');
     }
 
     /**
