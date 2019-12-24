@@ -3,34 +3,23 @@
 @section('title', app_name() . ' | ' . __('navs.general.home'))
 
 @section('content')
-    <div class="row mb-4">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-home"></i> @lang('navs.general.home')
-                </div>
-                <div class="card-body">
-                    @lang('strings.frontend.welcome_to', ['place' => app_name()])
-                    <br />
-                    Начальная страница, пока не известно с чем.
-                </div>
-            </div><!--card-->
-        </div><!--col-->
-    </div><!--row-->
+@foreach ($Articles as $Article )
 
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    <i class="fab fa-font-awesome-flag"></i> Font Awesome @lang('strings.frontend.test')
-                </div>
+<div class="row mb-4">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <strong>
+                    <i class="fas fa-newspaper"></i>  {{$Article->name}}
+                </strong>
+            </div><!--card-header-->
                 <div class="card-body">
-                    <i class="fas fa-home"></i>
-                    <i class="fab fa-facebook"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-pinterest"></i>
-                </div><!--card-body-->
-            </div><!--card-->
-        </div><!--col-->
-    </div><!--row-->
+                  <h5 class="card-title"></h5>
+                  <p class="card-text">{{$Article->another_info}}</p>
+                  <a href="article/{{$Article->id}}" class="btn btn-primary">Read more</a>
+                </div>
+        </div><!-- card -->
+    </div><!-- row -->
+</div><!-- row -->
+@endforeach
 @endsection

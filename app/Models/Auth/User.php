@@ -2,6 +2,7 @@
 
 namespace App\Models\Auth;
 
+use App\Article;
 use App\Models\Auth\Traits\Scope\UserScope;
 use App\Models\Auth\Traits\Method\UserMethod;
 use App\Models\Auth\Traits\Attribute\UserAttribute;
@@ -16,4 +17,9 @@ class User extends BaseUser
         UserMethod,
         UserRelationship,
         UserScope;
+
+        public function articles()
+        {
+            return $this->hasMany(Article::class);
+        }
 }

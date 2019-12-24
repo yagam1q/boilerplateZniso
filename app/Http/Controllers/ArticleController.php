@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use App\Models\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-
+use Auth;
 use Lang;
 
 class ArticleController extends Controller
@@ -25,7 +24,11 @@ class ArticleController extends Controller
     public function index()
     {
         //FIX THIS
-        $Articles = Article::all()->where('status', 1)->orderBy('id' ,'DESC');
+        // $Articles = Article::all()->ordyerBy('id' ,'DESC')->where('status', 1)->get();
+        $Articles = Article::orderBy('id' , 'DESC')
+                                ->where('author_id' , Auth::user()->id)
+                                ->get();
+
         if($Articles->isEmpty()){
             abort(404 , 'navs.general.home' );
         }
@@ -71,23 +74,13 @@ class ArticleController extends Controller
         $input['organisation'] = $request->get('organisation');
         $input['position'] = $request->get('position');
         $input['another_info'] = $request->get('another_info');
-        $input['status'] = 1;
-        $input['author_id'] = mt_rand(1,2);
+        $input['status'] =  mt_rand(1,3);
+        $input['author_id'] = Auth::user()->id;
 
         Article::create($input);
-        return redirect('article');
+        // return redirect('article');
+        return redirect( 'article/' . Article::latest()->first()->id);
 
-        // $Article = new Article();
-        // $Artcile->name = $request->input('name');
-        // $Artcile->organisation = $request->input('organisation');
-        // $Artcile->position = $request->input('position');
-        // $Artcile->another_info = $request->input('another_info');
-        // $Artcile->status = 1;
-        // $Artcile->author_id = Auth::user()->id;
-        // $Article->save();
-
-
-        // return dd($validator);
     }
 
     /**
@@ -98,7 +91,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return view('frontend.Article.show' , compact('article'));
     }
 
     /**
@@ -109,10 +102,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        if (Gate::allows('update-article', $article)) {
-            return 'Nice work, bro';
-        }
-        abort(404 , 'have a nice day, bro');
+        return dd($article);
     }
 
     /**
