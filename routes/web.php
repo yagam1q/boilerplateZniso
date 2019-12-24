@@ -21,6 +21,7 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
 Route::resource('article', 'ArticleController', [
     'names' => [
         'index' => 'article.index',
+        'store' => 'article.store',
     ]
 ]);
 /*

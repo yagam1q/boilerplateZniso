@@ -25,7 +25,7 @@
     <body>
         @include('includes.partials.read-only')
 
-        <div id="app" class="container">
+        <div id="app1" class="container">
             @include('includes.partials.logged-in-as')
             @include('frontend.includes.nav')
 
