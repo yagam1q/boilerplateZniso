@@ -17,7 +17,7 @@
                         </strong>
                     </div>
                     <div class="col-6 text-right">
-                        <button type="" class="btn btn-outline-primary">Edit article if u can?!</button>
+                        <a href="{{Route('article.edit' , $Article->id)}}" class="btn btn-outline-primary">Edit article if u can?</a>
                     </div>
                 </div>
             </div><!--card-header-->
