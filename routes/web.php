@@ -6,7 +6,7 @@ use App\Http\Controllers\LanguageController;
  * Global Routes
  * Routes that are used between both frontend and backend.
  */
- Route::get('/bt', function ($id) {
+ Route::get('/bt', function () {
     return view('frontend.bt');
 });
 // Switch between the included languages
