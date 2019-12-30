@@ -56,6 +56,11 @@ class ArticlePolicy
         return $user->id === $article->author_id;
     }
 
+    public function edit(User $user, Article $article)
+    {
+        return $user->id === $article->author_id;
+    }
+
     /**
      * Determine whether the user can delete the article.
      *

@@ -11,11 +11,6 @@ use Lang;
 
 class ArticleController extends Controller
 {
-    public function __construct()
-    {
-        $this->authorizeResource(Article::class, 'article');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +18,6 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //FIX THIS
-        // $Articles = Article::all()->ordyerBy('id' ,'DESC')->where('status', 1)->get();
         $Articles = Article::orderBy('id' , 'DESC')
                                 ->where('author_id' , Auth::user()->id)
                                 ->get();
@@ -102,7 +95,10 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return dd($article);
+        $this->authorize('edit', $article);
+
+        return view('frontend.Article.edit' , compact('article'));
+
     }
 
     /**
@@ -114,7 +110,15 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $Article = Article::find($article->id);
+        $Article->name = $request->get('name');
+        $Article->organisation = $request->get('organisation');
+        $Article->position = $request->get('position');
+        $Article->another_info = $request->get('another_info');
+        // $Article->status = 2;
+        $Article->save();
+
+        return redirect( 'article/' . $article->id);
     }
 
     /**

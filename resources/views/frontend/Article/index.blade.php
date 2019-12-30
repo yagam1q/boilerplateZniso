@@ -17,7 +17,9 @@
                         </strong>
                     </div>
                     <div class="col-6 text-right">
-                        <a href="{{Route('article.edit' , $Article->id)}}" class="btn btn-outline-primary">Edit article if u can?</a>
+                        @can('edit' , $Article)
+                            <a href="{{Route('article.edit' , $Article->id)}}" class="btn btn-outline-primary">Edit article if u can?</a>
+                        @endcan
                     </div>
                 </div>
             </div><!--card-header-->
