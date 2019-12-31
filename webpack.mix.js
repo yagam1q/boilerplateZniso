@@ -31,7 +31,8 @@ mix.setPublicPath('public')
         'popper.js',
         'axios',
         'sweetalert2',
-        'lodash'
+        'lodash',
+        'bootstrap-table'
     ])
     .sourceMaps();
 
