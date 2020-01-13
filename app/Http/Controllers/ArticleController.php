@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use DB;
 
 use Auth;
 use Lang;
@@ -131,4 +132,10 @@ class ArticleController extends Controller
     {
         //
     }
+
+    public function api ()
+    {
+        return datatables()->of(DB::table('articles')->select('id' , 'name' , 'organisation' , 'position')->get())->toJson();
+    }
+
 }

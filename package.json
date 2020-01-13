@@ -65,6 +65,8 @@
     },
     "dependencies": {
         "bootstrap-table": "^1.15.5",
+        "datatables.net": "^1.10.20",
+        "datatables.net-dt": "^1.10.20",
         "vue-navigation-bar": "^2.0.0",
         "vue-sidebar-menu": "^4.4.4"
     }

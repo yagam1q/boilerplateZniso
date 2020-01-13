@@ -6,9 +6,6 @@ use App\Http\Controllers\LanguageController;
  * Global Routes
  * Routes that are used between both frontend and backend.
  */
- Route::get('/bt', function () {
-    return view('frontend.bt');
-});
 // Switch between the included languages
 Route::get('lang/{lang}', [LanguageController::class, 'swap']);
 
@@ -41,4 +38,6 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'admin.', '
      * These routes can not be hit if the password is expired
      */
     include_route_files(__DIR__.'/backend/');
+    Route::resource('/article' , 'BArticlesController');
+
 });

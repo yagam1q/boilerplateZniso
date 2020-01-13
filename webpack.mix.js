@@ -32,7 +32,7 @@ mix.setPublicPath('public')
         'axios',
         'sweetalert2',
         'lodash',
-        'bootstrap-table'
+        'bootstrap-table',
     ])
     .sourceMaps();
 

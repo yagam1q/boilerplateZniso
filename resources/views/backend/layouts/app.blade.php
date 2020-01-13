@@ -11,6 +11,8 @@
     <title>@yield('title', app_name())</title>
     <meta name="description" content="@yield('meta_description', 'Laravel Boilerplate')">
     <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
+
+    @yield('styles')
     @yield('meta')
 
     {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
@@ -46,7 +48,7 @@
      * // Footer options
      * 1. '.footer-fixed'					- Fixed footer
 --}}
-<body class="app header-fixed sidebar-fixed aside-menu-off-canvas sidebar-lg-show">
+<body class="app header-fixed sidebar-fixed aside-menu-off-canvas sidebar-lg-show aside-menu-fixed">
     @include('backend.includes.header')
 
     <div class="app-body">
@@ -55,7 +57,7 @@
         <main class="main">
             @include('includes.partials.read-only')
             @include('includes.partials.logged-in-as')
-            {!! Breadcrumbs::render() !!}
+{{--            {!! Breadcrumbs::render() !!}--}}
 
             <div class="container-fluid">
                 <div class="animated fadeIn">
