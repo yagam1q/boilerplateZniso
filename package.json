@@ -18,7 +18,7 @@
         "@coreui/coreui": "^2.1.12",
         "@fortawesome/fontawesome-free": "^5.9.0",
         "@vue/test-utils": "^1.0.0-beta.29",
-        "axios": "^0.19",
+        "axios": "^0.19.1",
         "babel-core": "^7.0.0-bridge.0",
         "babel-jest": "^24.8.0",
         "bootstrap": "^4.3.1",
@@ -32,7 +32,7 @@
         "perfect-scrollbar": "^1.4.0",
         "popper.js": "^1.15.0",
         "resolve-url-loader": "^2.3.2",
-        "sass": "^1.21.0",
+        "sass": "^1.24.4",
         "sass-loader": "^7.1.0",
         "sweetalert2": "^8.13.0",
         "vue": "^2.6.10",
@@ -62,12 +62,5 @@
     },
     "engines": {
         "node": ">=6.0.0"
-    },
-    "dependencies": {
-        "bootstrap-table": "^1.15.5",
-        "datatables.net": "^1.10.20",
-        "datatables.net-dt": "^1.10.20",
-        "vue-navigation-bar": "^2.0.0",
-        "vue-sidebar-menu": "^4.4.4"
     }
 }

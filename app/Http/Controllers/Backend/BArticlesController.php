@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Article;
 use App\Http\Controllers\Controller;
+use App\Models\Auth\User;
 use Illuminate\Http\Request;
 
 class BArticlesController extends Controller

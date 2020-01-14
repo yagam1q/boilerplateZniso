@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use App\ArticleStatus;
+use App\Article_status;
+use App\Models\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use DB;
 
 use Auth;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use Lang;
 
 class ArticleController extends Controller
@@ -97,6 +99,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+
         $this->authorize('edit', $article);
 
         return view('frontend.Article.edit' , compact('article'));
@@ -136,11 +139,14 @@ class ArticleController extends Controller
 
     public function api ()
     {
-            return Datatables()->of(Article::query()->with('ArticleStatus', 'status'))
-            ->addColumn('name', function($row){
-                return $row->status->name;
-            })
-            ->make(true);
+
+            return datatables()->of(
+                DB::table('articles')
+                ->join('article_statuses', 'articles.status', '=', 'article_statuses.id')
+                ->select('articles.created_at' ,  'articles.id' ,'articles.name' , 'articles.organisation', 'article_statuses.name as status_name' )
+                ->get()
+            )->toJson();
+
     }
 
 }

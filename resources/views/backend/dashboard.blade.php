@@ -72,7 +72,7 @@
                     { "data" : "created_at"},
                     { "data" : "id"},
                     { "data": "name" },
-                    { "data": "status" },
+                    { "data": "status_name" },
                     { "data": "organisation" },
                 ],
                 "language": {

@@ -1,12 +1,20 @@
 <?php
 
 use App\Http\Controllers\LanguageController;
-
+use Illuminate\Support\Facades\DB;
 /*
  * Global Routes
  * Routes that are used between both frontend and backend.
  */
 // Switch between the included languages
+Route::get('/rnd', function () {
+    $users = DB::table('articles')
+            ->join('article_statuses', 'articles.status', '=', 'article_statuses.id')
+            ->select('articles.id' , 'article_statuses.name as status_name' )
+            ->get();
+    dd($users);
+
+});
 Route::get('lang/{lang}', [LanguageController::class, 'swap']);
 
 /*

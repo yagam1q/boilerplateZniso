@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Auth\User;
+use App\Article_status;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
@@ -16,12 +18,8 @@ class Article extends Model
         'status',
         ];
 
-    public function user()
-    {
-        return $this-> belongsTo('App\User');
-    }
-    public function stat()
-    {
-        return $this-> belongsTo(ArticleStatus::class , 'id');
-    }
+    public function ss()
+        {
+            return $this->hasMany(Article_status::class);
+        }
 }
