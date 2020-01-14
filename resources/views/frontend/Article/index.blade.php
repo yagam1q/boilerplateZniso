@@ -3,6 +3,8 @@
 @section('title', app_name() . ' | ' . __('navs.general.home'))
 
 @section('content')
+
+@if($Articles ?? '')
 @foreach ($Articles as $Article )
 
 <div class="row mb-4">
@@ -32,5 +34,8 @@
     </div><!-- row -->
 </div><!-- row -->
 @endforeach
-
+@else
+    Article is empty, please add some articles!
+@endif
+{{ $Articles->links() }}
 @endsection

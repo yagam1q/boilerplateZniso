@@ -22,4 +22,5 @@
     </div><!-- row -->
 </div><!-- row -->
 @endforeach
+            {{ $Articles->links() }}
 @endsection

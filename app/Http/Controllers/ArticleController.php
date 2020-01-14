@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\ArticleStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use DB;
@@ -21,10 +22,10 @@ class ArticleController extends Controller
     {
         $Articles = Article::orderBy('id' , 'DESC')
                                 ->where('author_id' , Auth::user()->id)
-                                ->get();
+                                ->paginate(10);
 
         if($Articles->isEmpty()){
-            abort(404 , 'navs.general.home' );
+            return view('frontend.Article.index');
         }
         return view('frontend.Article.index' , compact('Articles'));
     }
@@ -135,7 +136,11 @@ class ArticleController extends Controller
 
     public function api ()
     {
-        return datatables()->of(DB::table('articles')->select('id' , 'name' , 'organisation' , 'position')->get())->toJson();
+            return Datatables()->of(Article::query()->with('ArticleStatus', 'status'))
+            ->addColumn('name', function($row){
+                return $row->status->name;
+            })
+            ->make(true);
     }
 
 }

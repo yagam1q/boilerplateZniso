@@ -9,6 +9,7 @@ class Article extends Model
     protected $fillable = [
         'name',
         'author_id',
+        'authors',
         'organisation',
         'position',
         'another_info',
@@ -18,5 +19,9 @@ class Article extends Model
     public function user()
     {
         return $this-> belongsTo('App\User');
+    }
+    public function stat()
+    {
+        return $this-> belongsTo(ArticleStatus::class , 'id');
     }
 }

@@ -18,10 +18,10 @@ class HomeController extends Controller
     {
         $Articles = Article::orderBy('id' , 'DESC')
                                 ->where('status' , 1)
-                                ->get();
+                                ->paginate(10);
 
         if($Articles->isEmpty()){
-            abort(404 , 'navs.general.home' );
+           view('frontend.index');
         }
         return view('frontend.index' , compact('Articles'));
     }

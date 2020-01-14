@@ -25,16 +25,20 @@
                     <table id="example" class="display" style="width:100%">
                         <thead>
                         <tr>
-                            <th>name</th>
-                            <th>organisation</th>
-                            <th>position</th>
+                            <th>Дата поступления</th>
+                            <th>Иднт. Номер</th>
+                            <th>Название</th>
+                            <th>Статус</th>
+                            <th>Организация</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
-                            <th>name</th>
-                            <th>organisation</th>
-                            <th>position</th>
+                            <th>Дата поступления</th>
+                            <th>Иднт. Номер</th>
+                            <th>Название</th>
+                            <th>Статус</th>
+                            <th>Организация</th>
                         </tr>
                         </tfoot>
                     </table>
@@ -44,8 +48,12 @@
         </div><!--col-->
     </div><!--row-->
     @push('after-scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://cdn.datatables.net/plug-ins/1.10.20/dataRender/datetime.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
     <script>
         $(document).ready(function() {
             $('#example').DataTable( {
@@ -55,14 +63,23 @@
                     "url": "/api/articles",
                     "type": "GET"
                 },
+                "order": [[ 1, "desc" ]],
+                columnDefs:[{targets:0, render:function(data){
+                        return moment(data).format('L');
+                    }}],
+
                 "columns": [
+                    { "data" : "created_at"},
+                    { "data" : "id"},
                     { "data": "name" },
+                    { "data": "status" },
                     { "data": "organisation" },
-                    { "data": "position" },
                 ],
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Russian.json"
                 },
+
+
             } );
             var table = $('#example').DataTable();
 
@@ -74,9 +91,7 @@
                     table.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
                     var uid = table.row( this ).data().id;
-
-                    alert( uid );
-                    // window.open("https://www.fcgie.ru","_blank")
+                    window.open("/admin/article/"+uid+"/edit" ,"_blank")
                 }
             } );
 
@@ -85,7 +100,6 @@
             } );
         } );
     </script>
-    <script !src=""></script>
     @endpush
 
 @endsection

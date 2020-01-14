@@ -56,9 +56,11 @@ class BArticlesController extends Controller
      * @param  \App\c  $c
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        //
+        $article = Article::findorfail($id);
+//        dd('sdasd');
+        return view('backend.edit' , compact('article'));
     }
 
     /**

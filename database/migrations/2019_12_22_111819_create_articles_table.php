@@ -17,12 +17,14 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('author_id');
             $table->string('name' , 255);
+            $table->string('authors')->default(null);
             $table->string('organisation');
             $table->string('position');
             $table->string('another_info')->default(null);
-            $table->integer('status')->default(1);
+            $table->unsignedBigInteger('status')->default(1);
             $table->timestamps();
             $table->foreign('author_id')->references('id')->on('users');
+            $table->foreign('status')->references('id')->on('article_statuses');
         });
     }
 
