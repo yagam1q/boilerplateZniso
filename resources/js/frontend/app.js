@@ -29,19 +29,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-new Vue({
+const app = new Vue({
+
     el: '#app',
-    data: {
-      finds: []
-    },
-    methods: {
-      addFind: function () {
-        this.finds.push({ value: '' });
-      },
-      deleteFind: function (index) {
-        console.log(index);
-        console.log(this.finds);
-        this.finds.splice(index, 1);
-      }
-    }
-  });
+
+
+
+  })

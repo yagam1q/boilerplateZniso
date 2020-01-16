@@ -13,7 +13,8 @@
             <p class="card-text">{{ $article->another_info }}</p>
           </div>
           <div class="card-footer text-muted">
-              <p class="">{{ date('d.m.Y' , strtotime($article->created_at) )}}</p>
+          <p class="">Автор(ы): {{$article->authors}}</p>
+              <p class="text-right">Дата размещения: {{ date('d.m.Y' , strtotime($article->created_at) )}}</p>
           </div>
         </div>
 @endsection

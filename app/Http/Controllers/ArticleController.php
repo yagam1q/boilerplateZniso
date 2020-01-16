@@ -50,8 +50,10 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'unique:articles', 'max:255'],
+            'authors' => 'required',
             'organisation' => 'required',
             'position' => 'required',
             'another_info' => ['max:1000'],
@@ -68,6 +70,7 @@ class ArticleController extends Controller
         $input = $request->all();
 
         $input['name'] = $request->get('name');
+        $input['authors'] = implode("; " , $request->get('authors'));
         $input['organisation'] = $request->get('organisation');
         $input['position'] = $request->get('position');
         $input['another_info'] = $request->get('another_info');
