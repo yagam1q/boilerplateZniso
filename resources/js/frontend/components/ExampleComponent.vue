@@ -20,22 +20,20 @@
         mounted() {
             console.log('Component mounted.')
         },
-    data: function () {
+        data: function () {
         return{
-
             inputs: []
-
         }
-    },
-    methods: {
-      addRow() {
-        this.inputs.push({
-          one: ''
+        },
+        methods: {
+        addRow() {
+            this.inputs.push({
+            one: ''
         })
-      },
-      deleteRow(index) {
-        this.inputs.splice(index,1)
-      }
+        },
+        deleteRow(index) {
+            this.inputs.splice(index,1)
+        }
     }
     }
 </script>
