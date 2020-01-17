@@ -7,7 +7,9 @@ use App\Article_status;
 use App\Models\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Facade\CodeEditor\Http\Controllers\FileContentsController;
 use DB;
+
 
 use Auth;
 use Illuminate\Foundation\Auth\User as AuthUser;
@@ -27,7 +29,7 @@ class ArticleController extends Controller
                                 ->paginate(10);
 
         if($Articles->isEmpty()){
-            return view('frontend.Article.index');
+            return view('frontend.Article.index', compact('Articles'));
         }
         return view('frontend.Article.index' , compact('Articles'));
     }
@@ -57,6 +59,7 @@ class ArticleController extends Controller
             'organisation' => 'required',
             'position' => 'required',
             'another_info' => ['max:1000'],
+            'upload' => ['file' ,'max:10000' , 'mimes:pdf,docx,doc']
 
         ]);
         if ($validator->fails()) {
@@ -71,11 +74,17 @@ class ArticleController extends Controller
 
         $input['name'] = $request->get('name');
         $input['authors'] = implode("; " , $request->get('authors'));
-        $input['organisation'] = $request->get('organisation');
-        $input['position'] = $request->get('position');
+        $input['organisation'] = implode("; " , $request->get('organisation'));
+        $input['position'] = implode("; " , $request->get('position'));
         $input['another_info'] = $request->get('another_info');
         $input['status'] =  mt_rand(1,3);
         $input['author_id'] = Auth::user()->id;
+        if($request->hasFile('upload')){
+        $logoImage = $request->file('upload');
+        $uniqueFileName = uniqid() . $logoImage->getClientOriginalName();
+        $request->get('upload')->move(public_path('storage') . $uniqueFileName);
+        $input['upload'] = $uniqueFileName;
+        }
 
         Article::create($input);
         // return redirect('article');

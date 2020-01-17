@@ -23,5 +23,6 @@ class UserArticleSeeder extends Seeder
             'another_info' => Str::random(100),
             'status' => mt_rand(1,4),
         ]);
+
     }
 }

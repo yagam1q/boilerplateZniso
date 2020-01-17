@@ -4,8 +4,8 @@
 
 @section('content')
 
-@if($Articles ?? '')
-@foreach ($Articles as $Article )
+@if($Articles ?? '' ?? '')
+@foreach ($Articles ?? '' as $Article )
 
 <div class="row mb-4">
     <div class="col">
@@ -37,5 +37,5 @@
 @else
     Article is empty, please add some articles!
 @endif
-{{ $Articles->links() }}
+{{ $Articles ?? ''->links() }}
 @endsection

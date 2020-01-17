@@ -3,6 +3,7 @@
 @section('title', app_name() . ' | ' . __('navs.general.home'))
 
 @section('content')
+
 @foreach ($Articles as $Article )
 
 <div class="row mb-4">
@@ -16,11 +17,12 @@
                 <div class="card-body">
                   <h5 class="card-title"></h5>
                   <p class="card-text">{{$Article->another_info}}</p>
-                  <a href="article/{{$Article->id}}" class="btn btn-primary">Read more</a>
+                  <a href="article/{{$Article->id}}" class="btn btn-primary">Подробнее</a>
                 </div>
         </div><!-- card -->
     </div><!-- row -->
 </div><!-- row -->
 @endforeach
+
             {{ $Articles->links() }}
 @endsection

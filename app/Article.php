@@ -16,10 +16,6 @@ class Article extends Model
         'position',
         'another_info',
         'status',
+        'upload',
         ];
-
-    public function ss()
-        {
-            return $this->hasMany(Article_status::class);
-        }
 }
