@@ -16,6 +16,8 @@ class Article extends Model
         'position',
         'another_info',
         'status',
-        'upload',
+        'fileName',
+        'fileOriginalName',
+
         ];
 }

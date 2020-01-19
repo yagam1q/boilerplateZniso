@@ -22,6 +22,8 @@ class UserArticleSeeder extends Seeder
             'position' => Str::random(5),
             'another_info' => Str::random(100),
             'status' => mt_rand(1,4),
+            'fileName' => null,
+            'fileOriginalName' => null,
         ]);
 
     }

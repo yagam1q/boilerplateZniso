@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Article_status;
 use App\Models\Auth\User;
+use App\Models\Traits\Uuid;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Facade\CodeEditor\Http\Controllers\FileContentsController;
 use DB;
 
 
@@ -59,35 +60,41 @@ class ArticleController extends Controller
             'organisation' => 'required',
             'position' => 'required',
             'another_info' => ['max:1000'],
-            'upload' => ['file' ,'max:10000' , 'mimes:pdf,docx,doc']
+            'upload' => 'mimes:pdf,doc,docx,xlsx|max:10000',
 
         ]);
+
         if ($validator->fails()) {
             return redirect('article/create')
                         ->withErrors($validator)
                         ->withInput();
         }
 
-
         $input = [];
-        $input = $request->all();
 
+        $input = $request->all();
         $input['name'] = $request->get('name');
-        $input['authors'] = implode("; " , $request->get('authors'));
-        $input['organisation'] = implode("; " , $request->get('organisation'));
-        $input['position'] = implode("; " , $request->get('position'));
+        $input['authors'] = implode("~~; " , $request->get('authors'));
+        $input['organisation'] = implode("~~; " , $request->get('organisation'));
+        $input['position'] = implode("~~; " , $request->get('position'));
         $input['another_info'] = $request->get('another_info');
-        $input['status'] =  mt_rand(1,3);
+        $input['status'] =  1;
         $input['author_id'] = Auth::user()->id;
-        if($request->hasFile('upload')){
-        $logoImage = $request->file('upload');
-        $uniqueFileName = uniqid() . $logoImage->getClientOriginalName();
-        $request->get('upload')->move(public_path('storage') . $uniqueFileName);
-        $input['upload'] = $uniqueFileName;
+
+        // if validation success
+
+        if ($request->hasFile('upload')) {
+            $path = public_path('storage').'/data/'. Auth::user()->id;
+            File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);
+            $file = $request->file('upload');
+            $originalName = $file->getClientOriginalName();
+            $name = date('d-m-y'). rand(11111,99999) . '.' . $file->getClientOriginalExtension();
+            $file->move($path, $name);
+            $input['fileName'] = $name;
+            $input['fileOriginalName'] = $originalName;
         }
 
         Article::create($input);
-        // return redirect('article');
         return redirect( 'article/' . Article::latest()->first()->id);
 
     }
@@ -147,18 +154,6 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         //
-    }
-
-    public function api ()
-    {
-
-            return datatables()->of(
-                DB::table('articles')
-                ->join('article_statuses', 'articles.status', '=', 'article_statuses.id')
-                ->select('articles.created_at' ,  'articles.id' ,'articles.name' , 'articles.organisation', 'article_statuses.name as status_name' )
-                ->get()
-            )->toJson();
-
     }
 
 }

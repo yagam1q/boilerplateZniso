@@ -31,7 +31,15 @@
                     <div class="col-3 border-right">
                         <div class="row">
                             <div class="col-7"><div class="alert alert-success" role="alert"> Наличие файла<br> статьи</div></div>
-                            <div class="col-5"><a target="_blank" href="/uploads/" class="btn btn-success" disabled><i class="fas fa-download"></i><br> Скачать</a> </div>
+                        <div class="col-5">
+                            @if(!empty($article->fileName))
+                            <a target="_blank" href="/storage/data/
+                            {{Auth::user()->id .'/' . $article->fileName}}
+                            " class="btn btn-success" disabled><i class="fas fa-download"></i><br> Скачать</a>
+                            @else
+                            Файл не прикреплен
+                            @endif
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -51,8 +59,11 @@
                 </div>
                 <div class="row py-3">
                     <div class="col-4">Организация</div>
-                    <div class="col-8"><input type="text" class="form-control" value="{{$article->organisation}}">
-
+                    <div class="col-8">
+                        @php $orgs = explode("~~; " , $article->organisation ) @endphp
+                        @foreach ($orgs as $org)
+                        <input type="text" class="form-control mb-1" value="{{$org}}">
+                        @endforeach
                     </div>
                 </div>
                 <div class="row py-3">
@@ -64,10 +75,11 @@
                 <div class="row py-3 border">
                     <div class="col-4">Сообщение</div>
                     <div class="col-8">
-                        <textarea name="" class="form-control" id="" cols="30" rows="5">{{$article->another_info}}</textarea>
+                        <textarea name="" class="form-control" id="" cols="30" rows="5">{{$article->anoteher_info}}</textarea>
 
                     </div>
                 </div>
+                <div  id="app">
                 <div class="row py-3 alert alert-secondary">
                     <div class="col-4">Отказ в принятии рукописи</div>
                     <div class="col-4">
@@ -124,7 +136,6 @@
 
                     <div class="col-2">
                         <button type="button" class="btn btn-success" onclick="sendEmail()" disabled ><i class="fas fa-envelope-open"></i> Отправить e-mail</button>
-
                     </div>
 
                 </div>
@@ -138,26 +149,29 @@
                     </div>
                 </div>
 
-            <!-- <div class="row py-3 alert alert-secondary">
-                <div class="col-3">Планируемый номер выпуска статьи</div>
-                <div class="col-7">
-                <input type="text" id="number_out"  class="form-control form-control-sm w-25 pr-3" value="" style="float:left">   <input type="button" id="currDate" class="ml-3 btn btn-outline-success" value="Текущая дата">
-                </div>
-                <div class="col-2">
-                <button id="get_number_out" type="button" class="btn btn-success" data-login="" data-id="" disabled><i class="fas fa-save"></i> Сохранить</button>
-                </div>
-            </div> -->
-
-
-
                 <div class="row py-3">
                     <div class="col-9">
-                        <input type="button" onclick="update()" value="Принять"  class="btn btn-success">
+                        <update-post
+                        article_id="{{$article->id}}"
+                        ></update-post>
+                    </div>
+                    <div class="col-3">
+
                     </div>
                 </div>
-
+            </div>
             </div>
         </form>
 
     </div>
 @endsection
+
+@push('after-scripts')
+
+<script>
+    function update(){
+        alert('asd');
+    }
+</script>
+
+@endpush

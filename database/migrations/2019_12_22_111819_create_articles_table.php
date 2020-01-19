@@ -23,6 +23,7 @@ class CreateArticlesTable extends Migration
             $table->string('another_info')->nullable();
             $table->unsignedBigInteger('status')->default(1);
             $table->string('fileName')->nullable();
+            $table->string('fileOriginalName')->nullable();
             $table->timestamp('publicated_at')->nullable();
             $table->timestamps();
             $table->foreign('author_id')->references('id')->on('users');

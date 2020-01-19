@@ -3,7 +3,7 @@
 @section('title', app_name() . ' | ' . __('navs.general.home'))
 @section('head_menu_title', 'Добавление новости')
 @section('content')
-<form action="{{ Route('article.store')}}" method="post">
+<form action="{{ Route('article.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('POST')
     <div id="app">
@@ -83,6 +83,8 @@
     <div class="form-group row">
         <label class="col-lg-3 col-form-label form-control-label">Файл статьи</label>
         <div class="col-lg-12">
+
+            {{-- <input type="file" name="upload[]" class="form-control"> --}}
             <input type="file" name="upload" class="form-control @error('upload') is-invalid @enderror" id="" style="padding-bottom: 2.2rem;">
         </div>
         @error('upload')
