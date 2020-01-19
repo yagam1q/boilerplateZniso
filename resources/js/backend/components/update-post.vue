@@ -46,7 +46,7 @@
                                     console.log(error);
                                 });
                                 } else {
-                                Swal.fire('Cancelled', 'Your file is still intact', 'info')
+                                Swal.fire('Отмена!', 'Статья не будет опубликована.', 'info')
                             }
                         })
                     },
