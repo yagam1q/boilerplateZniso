@@ -20,4 +20,8 @@ class Article extends Model
         'fileOriginalName',
 
         ];
+    public function status(){
+            return $this->hasMany(Article_status::class , 'id');
+    }
+
 }

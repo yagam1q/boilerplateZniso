@@ -17,10 +17,15 @@
                         <strong>
                             <i class="fas fa-newspaper"></i>  {{$Article->name}}
                         </strong>
+
                     </div>
+
                     <div class="col-6 text-right">
+                        <span class="mr-3 alert alert-primary" role="alert">
+                            Статус: {{$Article->status}}
+                        </span>
                         @can('edit' , $Article)
-                            <a href="{{Route('article.edit' , $Article->id)}}" class="btn btn-outline-primary">Edit article if u can?</a>
+                            <a href="{{Route('article.edit' , $Article->id)}}" class="btn btn-outline-primary">Редактровать</a>
                         @endcan
                     </div>
                 </div>

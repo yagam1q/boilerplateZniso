@@ -1,13 +1,13 @@
 <template>
     <div>
-        <div class="row py-3 alert alert-secondary">
+        <div :class="stl">
             <div class="col-4">{{text}}</div>
             <div class="col-4">
                 <select :name="name" class="form-control">
-                    <option v-for="item in inventory" :value="item" :key="item.id">
+                    <option v-for="item in inventory" :value="item.id">
+
                         {{ item.name }}
                     </option>
-<!--                    <option value="{{options.name}}"></option>-->
                 </select>
             </div>
             <div class="col-4">
@@ -26,8 +26,8 @@
             return {
                 input: [],
                 inventory: [
-                    {name: 'asd', id: '1'},
-                    this.options
+                    {name: 'Выбрать', id: '0'},
+                    this.inventory
                 ]
             }
         },
@@ -35,15 +35,16 @@
             name: {
                 type: String
             },
-            options: {
-                type: Object,
-                default: function () {
-                    return this.options
-                }
+            inventory: {
+                type: Object
             },
             text: {
                 type: String
-            }
+            },
+            stl : {
+                type: String
+            },
         },
+
     }
 </script>
