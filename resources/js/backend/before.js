@@ -21,7 +21,7 @@ window.Vue = Vue;
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('simple', require('./components/simple.vue').default);
+Vue.component('email-notify', require('./components/sendEmailNotification.vue').default);
 Vue.component('update-post', require('./components/update-post.vue').default);
 window.axios = require('axios');
 

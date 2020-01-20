@@ -80,19 +80,11 @@
                     </div>
                 </div>
                 <div  id="app">
-                <div class="row py-3 alert alert-secondary">
-                    <div class="col-4">Отказ в принятии рукописи</div>
-                    <div class="col-4">
-                        <select name="" class="form-control" id="otkaz">
-                            <option>Статья не носит научно-практической и теоретической значимости по основным научным направлениям журнала</option>
-                            <option>Название статьи не соответствует УДК, поставленному автором</option>
-                            <option>Отсутствие в статье контактной информации</option>
-                        </select>
-                    </div>
-                    <div class="col-4">
-                        <button id="btn_otkaz" type="button" class="btn btn-success" data-login="" data-article="" data-sfile="" data-id="" disabled><i class="fas fa-envelope-open"></i> Отправить e-mail уведомление</button>
-                    </div>
-                </div>
+                    <email-notify
+                        text="Отказ в принятии рукописи"
+                        name="otkaz"
+                        options="name: hz"
+                    ></email-notify>
                 <div class="row py-3 alert alert-warning">
                     <div class="col-4">Возврат на доработку</div>
                     <div class="col-4">
