@@ -29,9 +29,9 @@ class ApiController extends Controller
         $Article->save();
         return $id;
     }
-    public function  mail($request){
+    public function  mail(Request $request ){
 
-        $kek = $request;
-        return $kek;
+        return $request->all();
+
     }
 }

@@ -13,13 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-/*Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});*/
-//Route::group(['middleware' => 'auth:api'], function() {
+// Route::middleware('auth:api')->get('/update/article/{data}', function (Request $request) {
+//     return $request->all();
+// });
+// Route::group(['middleware' => 'auth:api'], function() {
 
 Route::get('/articles' , 'ApiController@api');
 Route::get('/articles-update/{id}' , 'ApiController@apiUpdate');
 Route::post('/update/article/{data}' , 'ApiController@mail');
-
-//});
