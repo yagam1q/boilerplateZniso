@@ -32,7 +32,7 @@ class ApiController extends Controller
         return $id;
     }
     public function  mail(Request $request ){
-
+ 
         $data = [
             'name'      => 'Biggus Dickus',
             'message'   => 'The life of brian',
