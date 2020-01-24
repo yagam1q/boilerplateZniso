@@ -84,7 +84,7 @@
                         text="Отказ в принятии рукописи"
                         name=""
                         stl="row py-3 alert alert-secondary"
-                        :inventory= "[
+                        :inv= "[
                         {name: 'Выбрать', id: '0'},
                         {name: 'Статья не носит научно-практической и теоретической значимости по основным научным направлениям журнала', id: '1'},
                         {name: 'Название статьи не соответствует УДК, поставленному автором', id: '2'},
@@ -96,7 +96,7 @@
                         text="Возврат на доработку"
                         name=""
                         stl="row py-3 alert alert-info"
-                        :inventory= "[
+                        :inv= "[
                         {name: 'Выбрать', id: '0'},
                         {name: 'Несоответствие требованиям к научному содержанию', id: '1'},
                         {name: 'Некорректное описание исследования (либо описание некорректного с научной точки зрения исследования, его параметров и критериев)', id: '2'},
@@ -114,9 +114,6 @@
                     <div class="col-7">
                         <input type="date" id="date_sended"  class="form-control form-control-sm w-25 pr-3 mr-3" disabled value="" style="float:left">
                         <select name="" id="list" class="ml-3">
-                            <option></option>
-                            <option></option>
-                            <option></option>
                             <option value="fragmaster1995@gmail.com">GMAIL test</option>
                             <option value="pudovkinms@fcgie.ru">Пудовкин М.С.</option>
                             <option value="tsymlyakovav@fcgie.ru">Цымляков А.В.</option>
