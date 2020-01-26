@@ -27,23 +27,27 @@ class ApiController extends Controller
     public function apiUpdate ($id)
     {
         $Article = Article::find($id);
-        $Article->status = 1;
+        $Article->status = 3;
         $Article->save();
-        return $id;
+        return 'Успешно!';
     }
-    public function  mail(Request $request ){
- 
+    public function  mail(Request $request){
+
+        $User = User::find($request->author_id);
+        $Article = Article::findorfail($request->article_id);
         $data = [
-            'name'      => 'Biggus Dickus',
-            'message'   => 'The life of brian',
-            'subject'   => 'Laravel Plain Email',
-            'from'      => 'info@local.com',
-            'from_name' => 'Laravel Plain Email',
+            'name'      => $User->first_name.' '.$User->last_name,
+            'message'   => $request->theme,
         ];
 
-        Mail::to('pudovkinms@fcgie.ru', 'Maxim')->send(new Artile($data));
+        $Article->status = 3;
+        $Article->save();
 
-        return "Plain Email Sent. Check your inbox.";
+
+
+        Mail::to($User->email, $User->first_name.' '.$User->last_name)->send(new Artile($data));
+
+        return "Сообщение отправлено!";
 
     }
 }

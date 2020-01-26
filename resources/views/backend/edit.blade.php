@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="row py-3 border">
-                    <div class="col-4">Сообщение</div>
+                <div class="col-4">Сообщение {{$article->author_id}}</div>
                     <div class="col-8">
                         <textarea name="" class="form-control" id="" cols="30" rows="5">{{$article->anoteher_info}}</textarea>
 
@@ -82,7 +82,9 @@
                 <div  id="app">
                     <email-notify
                         text="Отказ в принятии рукописи"
-                        name=""
+                        status="{{$article->status}}"
+                        article_id="{{$article->id}}"
+                        author_id="{{$article->author_id}}"
                         stl="row py-3 alert alert-secondary"
                         :inv= "[
                         {name: 'Выбрать', id: '0'},
@@ -94,7 +96,9 @@
 
                     <email-notify
                         text="Возврат на доработку"
-                        name=""
+                        status="{{$article->status}}"
+                        article_id="{{$article->id}}"
+                        author_id="{{$article->author_id}}"
                         stl="row py-3 alert alert-info"
                         :inv= "[
                         {name: 'Выбрать', id: '0'},
@@ -146,6 +150,7 @@
                     <div class="col-9">
                         <update-post
                         article_id="{{$article->id}}"
+                        status="{{$article->status}}"
                         ></update-post>
                     </div>
                     <div class="col-3">
@@ -160,11 +165,4 @@
 @endsection
 
 @push('after-scripts')
-
-<script>
-    function update(){
-        alert('asd');
-    }
-</script>
-
 @endpush

@@ -10,7 +10,7 @@
                 </select>
             </div>
             <div class="col-4">
-                <button id="" type="button" class="btn btn-success" :disabled="disableded == 1" @click="send"><i class="fas fa-envelope-open"></i> Отправить e-mail уведомление</button>
+                <button id="" :article_id="article_id" :author_id="author_id" type="button" class="btn btn-success" :disabled="disableded == 1" @click="send"><i class="fas fa-envelope-open"></i> Отправить e-mail уведомление</button>
             </div>
         </div>
     </div>
@@ -43,6 +43,8 @@
             stl : {
                 type: String
             },
+            article_id : '',
+            author_id: '',
         },
         methods: {
             disabled: function () {
@@ -50,15 +52,28 @@
                 this.obj = this.text;
             },
             send: function(event){
-                // this.object
-                console.log(this.obj);
-                // console.log(event.target.options[event.target.options.selectedIndex].text);
-            },
-            ff: function(e){
-                // object: { event.target.options[event.target.options.selectedIndex].text };
-                // console.log(object);
+                this.disableded = true,
+                axios.post('/api/update/article/1', {
+                    theme: this.obj,
+                    article_id: this.article_id,
+                    author_id: this.author_id,
+                })
+                .then(function (response) {
+                    console.log(response);
+
+                    Swal.fire({
+                        title: response.data,
+                        type: 'success'
+                    });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    Swal.fire({
+                        title: response,
+                        type: 'error'
+                    });
+                });
             }
         }
-
-    }
+        }
 </script>

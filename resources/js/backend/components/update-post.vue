@@ -1,6 +1,6 @@
 <template>
   <div>
-      <input type="button" @click="alertDisplay" class="btn btn-success" value="Принять публикацию в печать" :article_id="article_id" >
+      <input id="disabled_btn" type="button" @click="alertDisplay" class="btn btn-success" value="Принять публикацию в печать" :article_id="article_id" :status="status">
   </div>
 </template>
 
@@ -11,16 +11,18 @@
 
 
         },
-        props: ['article_id'],
+        props: ['article_id' , 'status'],
         data: function () {
             return{
                 a_id: this.article_id,
-                input: [],
+                status: this.status,
             }
         },
 
             methods: {
                 alertDisplay() {
+                    if(this.status != 3 ){
+                        console.log(this.status);
                     Swal.fire({
                         title: '<strong><u>Вы уверены, </u></strong>',
                     type: 'question',
@@ -41,6 +43,11 @@
                                 axios.get('//blog.test/api/articles-update/' + this.a_id )
                                 .then(function (response) {
                                     console.log(response);
+                                    Swal.fire({
+                                        title: response.data,
+                                        type: 'success'
+                                    });
+                                    $('#disabled_btn').prop('disabled' , true);
                                 })
                                 .catch(function (error) {
                                     console.log(error);
@@ -48,7 +55,13 @@
                                 } else {
                                 Swal.fire('Отмена!', 'Статья не будет опубликована.', 'info')
                             }
-                        })
+                        })}
+                        else{
+                            Swal.fire({
+                                        title: 'Статья уже опубликована',
+                                        type: 'error'
+                                    });
+                        }
                     },
                 update : function() {
                 axios.get('//blog.test/api/articles-update/' + this.a_id )

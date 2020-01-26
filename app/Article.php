@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Auth\User;
 use App\Article_status;
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
@@ -22,6 +23,9 @@ class Article extends Model
         ];
     public function status(){
             return $this->hasMany(Article_status::class , 'id');
+    }
+    public function auth (){
+        return $this->belongsTo(User::class);
     }
 
 }
