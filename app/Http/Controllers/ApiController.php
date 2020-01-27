@@ -39,10 +39,13 @@ class ApiController extends Controller
             'name'      => $User->first_name.' '.$User->last_name,
             'message'   => $request->theme,
         ];
-
-        $Article->status = 3;
-        $Article->save();
-
+        if($request->type_id != 3 ){
+            $Article->status = 3;
+            $Article->save();
+        }else{
+            $Article->status = 2;
+            $Article->save();
+        }
 
 
         Mail::to($User->email, $User->first_name.' '.$User->last_name)->send(new Artile($data));

@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="row py-3 border">
-                <div class="col-4">Сообщение {{$article->author_id}}</div>
+                <div class="col-4">Сообщение</div>
                     <div class="col-8">
                         <textarea name="" class="form-control" id="" cols="30" rows="5">{{$article->anoteher_info}}</textarea>
 
@@ -85,6 +85,8 @@
                         status="{{$article->status}}"
                         article_id="{{$article->id}}"
                         author_id="{{$article->author_id}}"
+                        type_id="1"
+                        sts="{{$article->status}}"
                         stl="row py-3 alert alert-secondary"
                         :inv= "[
                         {name: 'Выбрать', id: '0'},
@@ -99,6 +101,8 @@
                         status="{{$article->status}}"
                         article_id="{{$article->id}}"
                         author_id="{{$article->author_id}}"
+                        type_id="2"
+                        sts="{{$article->status}}"
                         stl="row py-3 alert alert-info"
                         :inv= "[
                         {name: 'Выбрать', id: '0'},
@@ -113,7 +117,7 @@
                         ]"
                     ></email-notify>
 
-                <div class="row py-3 alert alert-info">
+                {{-- <div class="row py-3 alert alert-info">
                     <div class="col-3">Дата отправки на рецензию</div>
                     <div class="col-7">
                         <input type="date" id="date_sended"  class="form-control form-control-sm w-25 pr-3 mr-3" disabled value="" style="float:left">
@@ -145,7 +149,7 @@
                         <button id="get_rev" type="button" class="btn btn-success" data-login="" data-article="" data-sfile="" data-id="" disabled><i class="fas fa-save"></i> Сохранить</button>
                     </div>
                 </div>
-
+--}}
                 <div class="row py-3">
                     <div class="col-9">
                         <update-post
